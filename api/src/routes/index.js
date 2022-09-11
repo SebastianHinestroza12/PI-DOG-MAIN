@@ -1,12 +1,14 @@
 const { Router } = require('express');
 const router = Router();
-const axios = require('axios');
+const {
+  getDogs,
+  getDogsId,
+  getTemperamento
+} = require('./../controllers/RutasController');
 
-router.get('/prueba', async (req, res) => {
 
-  const api = await axios.get('https://api.thedogapi.com/v1/breeds');
-  const resultado = await api.data
-  return res.json(resultado);
-});
+router.get('/dogs', getDogs);
+router.get('/dogs/:id', getDogsId);
+router.get('/temperaments', getTemperamento);
 
 module.exports = router;
