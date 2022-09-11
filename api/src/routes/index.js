@@ -1,12 +1,12 @@
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-
-
 const router = Router();
+const axios = require('axios');
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+router.get('/prueba', async (req, res) => {
 
+  const api = await axios.get('https://api.thedogapi.com/v1/breeds');
+  const resultado = await api.data
+  return res.json(resultado);
+});
 
 module.exports = router;
