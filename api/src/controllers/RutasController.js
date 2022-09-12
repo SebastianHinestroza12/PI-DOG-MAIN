@@ -40,10 +40,8 @@ const getTemperamento = async (req, res) => {
 const postDogs = async (req, res) => {
   const {
     name,
-    heightMax,
-    heightMin,
-    weightMax,
-    weightMin,
+    height,
+    weight,
     temperament,
     life_span,
     image,
@@ -53,10 +51,8 @@ const postDogs = async (req, res) => {
   try {
     let NewRaza = await Raza.create({
       name,
-      heightMax,
-      heightMin,
-      weightMax,
-      weightMin,
+      height,
+      weight,
       life_span,
       image,
       createdInDb
