@@ -9,15 +9,11 @@ const axios = require('axios');
 const getApiInfo = async () => {
   const apiUrl = await axios.get("https://api.thedogapi.com/v1/breeds");
   const infoApi = await apiUrl.data.map((el) => {
-    const weightApi = el.weight.metric.split("-");
-    const heightApi = el.height.metric.split("-");
     return {
       id: el.id,
       name: el.name,
-      heightMin: parseInt(heightApi[0]) ? parseInt(heightApi[0]) : 54,
-      heightMax: parseInt(heightApi[1]) ? parseInt(heightApi[1]) : 22,
-      weightMin: parseInt(weightApi[0]) ? parseInt(weightApi[0]) : 14,
-      weightMax: parseInt(weightApi[1]) ? parseInt(weightApi[1]) : 78,
+      height: el.height.metric,
+      weight: el.weight.metric,
       life_span: el.life_span,
       image: el.image.url
         ? el.image.url
@@ -66,10 +62,8 @@ const getAllInfo = async () => {
     return {
       id: el.id,
       name: el.name,
-      heightMin: el.heightMin,
-      heightMax: el.heightMax,
-      weightMin: el.weightMin,
-      weightMax: el.weightMax,
+      height: el.height,
+      weight: el.weight,
       life_span: el.life_span,
       image: el.image
         ? el.image
