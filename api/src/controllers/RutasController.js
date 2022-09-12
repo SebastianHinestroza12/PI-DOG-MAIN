@@ -1,7 +1,6 @@
 const { Raza, Temperament } = require('.././db')
 
 const {
-  getInfoDb,
   getAllInfo,
   getTemperamentAll
 } = require('./ApiDb');
@@ -14,7 +13,7 @@ const getDogs = async (req, res) => {
   if (name) {
     const filter = todo.filter(data => data.name.toLowerCase() === name.toLowerCase());
     if (filter.length > 0) return res.status(200).json(filter);
-    else return res.json(`El perro ${name} no existe ❌`);
+    else return res.status(404).json(`El perro ${name} no existe ❌`);
   }
   return res.status(200).json(todo);
 };
@@ -25,7 +24,7 @@ const getDogsId = async (req, res) => {
   const dogsId = filtro.find(data => parseInt(data.id) === parseInt(id));
 
   if (dogsId) return res.status(200).json(dogsId);
-  else return res.json(`no existe el perro con id ${id}`);
+  else return res.status(404).json(`no existe el perro con id ${id}`);
 };
 
 const getTemperamento = async (req, res) => {
