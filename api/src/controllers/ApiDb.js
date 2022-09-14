@@ -11,9 +11,9 @@ const getApiInfo = async () => {
   const infoApi = await apiUrl.data.map((el) => {
     return {
       id: el.id,
-      name: el.name,
+      name: el.name.toLowerCase(),
       height: el.height.metric,
-      weight: el.weight.metric,
+      weight: parseInt(el.weight.metric.replace('NaN', 31)),
       life_span: el.life_span,
       image: el.image.url
         ? el.image.url
@@ -61,7 +61,7 @@ const getAllInfo = async () => {
   dbInfo = await dbInfo.map((el) => {
     return {
       id: el.id,
-      name: el.name,
+      name: el.name.toLowerCase(),
       height: el.height,
       weight: el.weight,
       life_span: el.life_span,

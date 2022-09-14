@@ -1,13 +1,14 @@
 import React from 'react';
+import './Card.css';
 
 const Card = ({ name, image, temperament, weight }) => {
   return (
-    <div>
-      <div>
+    <div className="card-container">
+      <div className='card'>
         <h2>{name}</h2>
-        <img src={image} alt='imagen' width="240px" height="180px" />
-        <p>{temperament}</p>
-        <p>{weight}</p>
+        <img className="image-card" src={image} alt='imagen' />
+        <p className='card-temperamentos'>{temperament}</p>
+        <p className='card-peso'>{`${weight} Kg`}</p>
       </div>
     </div>
   )
