@@ -7,9 +7,9 @@ import image from '../../img/negro.png';
 const NavBar = () => {
   return (
     <nav className="nav">
-      <Link to="/">
+      <Link to="/home">
         <span className="landinglink">
-          <img src={image} width="150" height=" 110" alt="dog" />
+          <img src={image} width="130" height=" 80" alt="dog" />
         </span>
       </Link>
       <SearchBar />

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, StrictMode } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -25,7 +25,6 @@ const Home = () => {
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
   };
-
 
   useEffect(() => {
     dispatch(getDog());
@@ -116,27 +115,32 @@ const Home = () => {
           </div>
         </div>
 
-
         <Page
           dogForPage={dogForPage}
           allDog={allDog.length}
           paginado={paginado}
         />
 
-        {
-          currentDog.map(el => {
-            return (
-              <Link className="linktohome" to={'/dogs/' + el.id} key={el.id}>
-                <Card
-                  name={el.name}
-                  image={el.image}
-                  temperament={el.temperament}
-                  weight={el.weight}
-                />
-              </Link>
-            )
-          })
-        }
+        <StrictMode>
+
+          {
+            currentDog.map(el => {
+              return (
+                <Link className="linktohome" to={'/dogs/' + el.id} key={el.id}>
+                  <Card
+                    name={el.name}
+                    image={el.image}
+                    temperament={el.temperament}
+                    weightMin={el.weightMin}
+                    weightMax={el.weightMax}
+                  />
+                </Link>
+              )
+            })
+          }
+
+        </StrictMode>
+
       </div>
     </Fragment>
   )

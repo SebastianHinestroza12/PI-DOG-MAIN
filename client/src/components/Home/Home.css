@@ -69,7 +69,7 @@
     #f3f2ef 50%,
     transparent 50%
   );
-  background-image: linear-gradient(45deg, #f1d010 50%, transparent 50%);
+  background-image: linear-gradient(45deg, orange 50%, transparent 50%);
   background-position: 100%;
   background-size: 400%;
   -webkit-transition: background 600ms ease-in-out;

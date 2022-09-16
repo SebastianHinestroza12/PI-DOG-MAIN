@@ -9,11 +9,17 @@ const axios = require('axios');
 const getApiInfo = async () => {
   const apiUrl = await axios.get("https://api.thedogapi.com/v1/breeds");
   const infoApi = await apiUrl.data.map((el) => {
+    const heightAPI = el.height.metric.split("-");
+    const weightAPI = el.weight.metric.split("-");
     return {
       id: el.id,
       name: el.name.toLowerCase(),
-      height: el.height.metric,
-      weight: parseInt(el.weight.metric.replace('NaN', 31)),
+      // height: el.height.metric,
+      // weight: parseInt(el.weight.metric.replace('NaN', 31)),
+      heightMin: parseInt(heightAPI[0]) ? parseInt(heightAPI[0]) : 12,
+      heightMax: parseInt(heightAPI[1]) ? parseInt(heightAPI[1]) : 45,
+      weightMin: parseInt(weightAPI[0]) ? parseInt(weightAPI[0]) : 21,
+      weightMax: parseInt(weightAPI[1]) ? parseInt(weightAPI[1]) : 48,
       life_span: el.life_span,
       image: el.image.url
         ? el.image.url
@@ -55,15 +61,19 @@ const getInfoDb = async () => {
  * Toma datos de una API y una base de datos, y los combina en una matriz.
  * @returns Una matriz de objetos.
  */
-const getAllInfo = async () => {
+const mergeInfo = async () => {
   const apiInfoAll = await getApiInfo();
   let dbInfo = await getInfoDb();
   dbInfo = await dbInfo.map((el) => {
     return {
       id: el.id,
       name: el.name.toLowerCase(),
-      height: el.height,
-      weight: el.weight,
+      // height: el.height,
+      // weight: el.weight,
+      heightMin: el.heightMin,
+      heightMax: el.heightMax,
+      weightMin: el.weightMin,
+      weightMax: el.weightMax,
       life_span: el.life_span,
       image: el.image
         ? el.image
@@ -73,6 +83,7 @@ const getAllInfo = async () => {
       }).join(", ")
     };
   });
+
 
   const infoTotal = apiInfoAll.concat(dbInfo);
   return infoTotal;
@@ -107,6 +118,6 @@ const getTemperamentAll = async () => {
 module.exports = {
   getApiInfo,
   getInfoDb,
-  getAllInfo,
+  mergeInfo,
   getTemperamentAll
 }

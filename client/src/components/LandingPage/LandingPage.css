@@ -1,0 +1,52 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Rampart+One&display=swap"); */
+
+/* body {
+  background-image: url("../../img/inicio.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+.container-landing {
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100vh;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.container-landing h1 {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
+}
+
+.container-landing button {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background: #180a96;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
+}
+
+.container-landing button:hover {
+  box-shadow: 0 3px #161516;
+  top: 1px;
+}
+
+.container-landing button:active {
+  box-shadow: 0 0 #3c3c3d;
+  top: 5px;
+}

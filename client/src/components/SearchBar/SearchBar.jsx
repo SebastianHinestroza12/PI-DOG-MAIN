@@ -27,7 +27,7 @@ const SearchBar = () => {
       <input
         className="search-bar"
         onChange={e => handleInputName(e)}
-        type="text"
+        type="search"
         placeholder="Buscar Dog..."
       />
       <button className="boton-search" onClick={e => handleButtonSubmit(e)} type="submit"><FcSearch /></button>

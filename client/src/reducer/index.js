@@ -2,6 +2,7 @@ const initialState = {
   dogs: [],
   allDogs: [],
   temperaments: [],
+  detail: []
 
 };
 
@@ -58,14 +59,17 @@ const rootReducer = (state = initialState, action) => {
       let orderPeso = state.dogs;
       let sortPeso = action.payload === 'liviano' ? orderPeso.sort((a, b) => {
         /* Ordenar la matriz por nombre. */
-        if (a.weight > b.weight) return 1
-        if (b.weight > a.weight) return -1
+        if (a.weightMax > b.weightMax) return 1
+        if (b.weightMax > a.weightMax) return -1
         return 0
       }) : orderPeso.sort((a, b) => {
-        if (a.weight > b.weight) return -1
-        if (b.weight > a.weight) return 1
+        if (a.weightMax > b.weightMax) return -1
+        if (b.weightMax > a.weightMax) return 1
         return 0
-      })
+      });
+
+
+
       return {
         ...state,
         dogs: sortPeso
@@ -80,6 +84,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       }
+    case 'GET_DOG_ID':
+      return {
+        ...state,
+        detail: action.payload
+      }
+    case 'CLEAR_STATE':
+      return {
+        ...state,
+        detail: []
+      };
 
     default:
       return state

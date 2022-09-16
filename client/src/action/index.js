@@ -9,6 +9,7 @@ function getDog() {
     })
   }
 };
+
 function getTemperaments() {
   return async function (dispatch) {
     let json = await axios.get('http://localhost:3001/temperaments');
@@ -43,7 +44,7 @@ function postDog(payload) {
         payload: json.data
       })
     } catch (error) {
-      alert(`Falta algun dato obligatorio, verifique`)
+      console.log(error);
     }
   }
 };
@@ -58,7 +59,7 @@ function getDogId(id) {
         payload: json.data
       })
     } catch (error) {
-      alert(`No se encontro el dog con id ${id}`);
+      console.log(error);
     }
   }
 };
@@ -71,6 +72,7 @@ function filterDogTemperaments(payload) {
     payload
   }
 };
+
 function filterDogCreated(payload) {
   console.log(payload)
   return {
@@ -94,6 +96,11 @@ function orderByWeight(payload) {
   }
 };
 
+function clearState() {
+  return {
+    type: 'CLEAR_STATE'
+  }
+};
 
 
 export {
@@ -105,5 +112,6 @@ export {
   orderByWeight,
   getDogName,
   postDog,
-  getDogId
+  getDogId,
+  clearState
 };
