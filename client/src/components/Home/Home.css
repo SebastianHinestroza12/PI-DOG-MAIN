@@ -1,0 +1,134 @@
+.linktohome {
+  text-decoration: none;
+  color: black;
+}
+
+.container-home {
+  display: inline-block;
+}
+
+.container-filtro {
+  /* border: 1px solid #000; */
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: row;
+  margin-top: 12px;
+}
+
+.container-item {
+  /* border: 1px solid #000; */
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.btn-home {
+  text-transform: uppercase;
+  margin-top: 10px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 0.6em;
+  color: #e74c3c;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+.btn-home:hover,
+.btn-home:focus {
+  color: rgb(0, 0, 0);
+  outline: 0;
+}
+
+.btn-home {
+  border-color: #070707;
+  color: rgb(2, 2, 2);
+  background-image: -webkit-linear-gradient(
+    45deg,
+    #f3f2ef 50%,
+    transparent 50%
+  );
+  background-image: linear-gradient(45deg, orange 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  -webkit-transition: background 600ms ease-in-out;
+  transition: background 600ms ease-in-out;
+}
+.btn-home:hover {
+  background-position: 0;
+}
+
+.select-home select::-ms-expand {
+  display: none;
+}
+
+.select-home {
+  max-width: 250px;
+  position: relative;
+}
+
+.select-home select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding: 7px 10px;
+  height: 42px;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: rgb(14, 17, 17);
+  background: radial-gradient(
+    circle,
+    rgb(166, 190, 190) 0%,
+    rgb(20, 20, 19) 100%
+  );
+  color: white;
+  font-size: 1em;
+  font-family: "Quicksand", sans-serif;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+}
+
+.select-home select option {
+  color: black;
+}
+.select-home i {
+  position: absolute;
+  right: 20px;
+  top: calc(50% - 13px);
+  width: 13px;
+  height: 13px;
+  display: block;
+  border-left: 4px solid #080808;
+  border-bottom: 4px solid #2ac176;
+  transform: rotate(-45deg); /* Giramos el cuadrado */
+  transition: all 0.25s ease;
+  margin-top: 15px;
+}

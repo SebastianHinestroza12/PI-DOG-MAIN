@@ -1,14 +1,14 @@
 const { Raza, Temperament } = require('.././db')
 
 const {
-  getAllInfo,
+  mergeInfo,
   getTemperamentAll
 } = require('./ApiDb');
 
 
 const getDogs = async (req, res) => {
   const { name } = req.query
-  const todo = await getAllInfo();
+  const todo = await mergeInfo();
 
   if (name) {
     const filter = todo.filter(data => data.name.toLowerCase() === name.toLowerCase());
@@ -20,7 +20,7 @@ const getDogs = async (req, res) => {
 
 const getDogsId = async (req, res) => {
   const { id } = req.params;
-  const filtro = await getAllInfo();
+  const filtro = await mergeInfo();
   const dogsId = filtro.find(data => parseInt(data.id) === parseInt(id));
 
   if (dogsId) return res.status(200).json(dogsId);
@@ -39,22 +39,24 @@ const getTemperamento = async (req, res) => {
 const postDogs = async (req, res) => {
   const {
     name,
-    height,
-    weight,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
     temperament,
     life_span,
     image,
-    createdInDb
   } = req.body;
 
   try {
     let NewRaza = await Raza.create({
       name,
-      height,
-      weight,
+      heightMin,
+      heightMax,
+      weightMin,
+      weightMax,
       life_span,
       image,
-      createdInDb
     });
 
     let temperamentNewDog = await Temperament.findAll({

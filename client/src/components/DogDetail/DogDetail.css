@@ -1,0 +1,80 @@
+.container-detail {
+  /* border: 1px solid #000; */
+  margin-top: 20px;
+}
+.imagen-detail {
+  border-radius: 13px;
+  width: 390px;
+  height: 300px;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
+}
+
+.container-item-dog {
+  color: white;
+  text-transform: uppercase;
+  border: 1px solid #000;
+  width: 70%;
+  margin: 0 auto;
+  background: radial-gradient(
+    circle,
+    rgb(166, 190, 190) 0%,
+    rgb(20, 20, 19) 90%
+  );
+  border-radius: 19px;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
+}
+
+.container-item-dog button {
+  text-transform: uppercase;
+  margin-top: 10px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border-radius: 0.6em;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.container-item-dog button :hover,
+.container-item-dog button:focus {
+  color: rgb(0, 0, 0);
+  outline: 0;
+}
+
+.container-item-dog button {
+  border-color: #070707;
+  color: white;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    #f3f2ef 50%,
+    transparent 50%
+  );
+  background-image: linear-gradient(45deg, orange 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  -webkit-transition: background 600ms ease-in-out;
+  transition: background 600ms ease-in-out;
+}
+
+.container-item-dog :hover {
+  background-position: 0;
+}
+
+.link-detail {
+  text-decoration: none;
+}

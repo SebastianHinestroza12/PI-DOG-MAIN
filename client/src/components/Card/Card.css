@@ -1,0 +1,115 @@
+.image-card {
+  border-radius: 13px;
+  width: 300px;
+  height: 210px;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
+}
+
+.card-container {
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 400px;
+  height: 360px;
+  display: flex;
+  margin: 13px 10px 40px 10px;
+  padding: 9px 2px 55px 2px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #000;
+  background: rgb(14, 17, 17);
+  background: radial-gradient(
+    circle,
+    rgb(166, 190, 190) 0%,
+    rgb(20, 20, 19) 100%
+  );
+  border-radius: 14px;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
+}
+
+.card:hover {
+  -webkit-box-shadow: 10px 7px 0px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 7px 0px -3px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 7px 0px -3px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.card-temperamentos {
+  font-size: 14px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.card-peso {
+  font-size: 14px;
+  color: white;
+}
+
+.card h2 {
+  color: white;
+  text-transform: uppercase;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Card Gradient */
+
+@-webkit-keyframes slideInLeft {
+  0% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes slideInLeft {
+  0% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}

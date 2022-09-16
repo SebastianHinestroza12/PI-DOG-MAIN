@@ -1,0 +1,35 @@
+.paginado {
+  margin-top: 22px;
+  margin-bottom: 12px;
+}
+
+.number {
+  margin-left: 10px;
+  align-items: center;
+  display: inline;
+}
+
+.btn-paginado {
+  background: rgb(14, 17, 17);
+  background: radial-gradient(
+    circle,
+    rgb(166, 190, 190) 0%,
+    rgb(20, 20, 19) 100%
+  );
+  border-radius: 7px;
+  transition-duration: 0.4s;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  color: white;
+}
+
+.btn-paginado:focus {
+  outline: none;
+}
+
+.btn-paginado:hover {
+  cursor: pointer;
+  background-color: #0b2ab4e0;
+  color: rgb(255, 255, 255);
+}

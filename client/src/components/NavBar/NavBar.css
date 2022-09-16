@@ -1,0 +1,39 @@
+.nav {
+  height: 100%;
+  width: 90%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  /* border: 1px solid #000000; */
+  margin: 0 auto;
+}
+
+/* Button Style */
+.create {
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  border: none;
+  padding: 16px 32px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  border-radius: 8px;
+  background: rgb(14, 17, 17);
+  background: radial-gradient(
+    circle,
+    rgb(166, 190, 190) 0%,
+    rgb(20, 20, 19) 100%
+  );
+  box-shadow: 0 2px 8px -1px #000000;
+  transition: all 0.5s ease;
+}
+
+.create:hover {
+  box-shadow: 0 0px 0px 0 rgba(0, 40, 120, 0);
+  background-position: 0 0;
+}
