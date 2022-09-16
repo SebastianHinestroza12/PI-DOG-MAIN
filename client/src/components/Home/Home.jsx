@@ -76,7 +76,7 @@ const Home = () => {
             <button className="btn-home" onClick={e => { handleClick(e) }}>Resetear</button>
           </div>
           <div className="container-item select-home">
-            <p>Ordenamiento Alfabetico</p>
+            <p className="p-home">Ordenamiento Alfabetico</p>
             <select onChange={e => handleOrderByName(e)}>
               <option value="asc">A - Z</option>
               <option value="desc">Z - A</option>
@@ -85,7 +85,7 @@ const Home = () => {
           </div>
 
           <div className="container-item select-home">
-            <p>Ordenamiento Por Peso</p>
+            <p className="p-home">Ordenamiento Por Peso</p>
             <select onChange={e => handleOrderByPeso(e)}>
               <option value="liviano">Livianos</option>
               <option value="pesado">Pesados</option>
@@ -94,7 +94,7 @@ const Home = () => {
           </div>
 
           <div className="container-item select-home">
-            <p>Filtro Creados O Existentes</p>
+            <p className="p-home">Filtro Creados O Existentes</p>
             <select onChange={e => handleFilterCreated(e)}>
               <option value="todos">Todos</option>
               <option value="existentes">Existentes</option>
@@ -104,7 +104,7 @@ const Home = () => {
           </div>
 
           <div className="container-item select-home">
-            <p>Filtro Por Temperamento</p>
+            <p className="p-home">Filtro Por Temperamento</p>
             <select onChange={e => handleFilterDog(e)}>
               <option value="todos">Todos</option>
               {temp.map((data) => (

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
+
 
 function getDog() {
   return async function (dispatch) {
@@ -29,7 +31,12 @@ function getDogName(name) {
         payload: json.data
       })
     } catch (error) {
-      alert(`No se encontro el perro ${name}`);
+      Swal.fire({
+        icon: 'error',
+        title: `No Se Encontro El Perro ${name}`,
+        timer: 2000,
+        confirmButtonColor: 'blue',
+      });
     }
   }
 };

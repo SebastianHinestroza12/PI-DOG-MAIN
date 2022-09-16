@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postDog, getTemperaments } from "../../action";
 import './CreatedDog.css';
+import Swal from 'sweetalert2';
 
 const CreatedDog = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,13 @@ const CreatedDog = () => {
   const handleSubmit = (e) => {
     e.preventDefault(e);
     dispatch(postDog(input))
-    alert('Perro Creado Correctamente')
+    Swal.fire({
+      title: `El Perro ${input.name} Fue Creado Con Exito`,
+      icon: 'success',
+      text: 'Sera Redirigido Al Inicio',
+      timer: 3000,
+      confirmButtonColor: 'green',
+    })
     setInput({
       name: "",
       weightMin: "",
@@ -55,7 +62,10 @@ const CreatedDog = () => {
       life_span: "",
       image: "",
     })
-    history.push('/home')
+
+    setTimeout(() => {
+      history.push('/home')
+    }, 4000)
   }
 
   const handleDelete = (e) => {
