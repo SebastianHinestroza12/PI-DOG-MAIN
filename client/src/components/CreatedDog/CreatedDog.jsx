@@ -105,7 +105,12 @@ const CreatedDog = () => {
   const handleSelct = (e) => {
     if (input.temperament === "") setInput({ ...input, temperament: [] });
     if (Object.values(input.temperament).includes(e.target.value)) {
-      alert("Duplicate temperament");
+      Swal.fire({
+        title: `Temperamento Duplicado`,
+        icon: 'warning',
+        timer: 3000,
+        confirmButtonColor: 'orange',
+      })
     } else {
       setInput({
         ...input,
@@ -114,58 +119,49 @@ const CreatedDog = () => {
     }
   };
 
-  // const handleSelct = (e) => {
-  //   setInput({
-  //     ...input,
-  //     temperament: [...input.temperament, e.target.value]
-  //   })
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
-<<<<<<< HEAD
-    dispatch(postDog(input))
-    // Swal.fire({
-    //   title: `El Perro ${input.name} Fue Creado Con Exito`,
-    //   icon: 'success',
-    //   text: 'Sera Redirigido Al Inicio',
-    //   timer: 3000,
-    //   confirmButtonColor: 'green',
-    // })
-    alert('Perro Creado Correctamente')
-    setInput({
-      name: "",
-      weightMin: "",
-      weightMax: "",
-      heightMin: "",
-      heightMax: "",
-      temperament: [],
-      life_span: "",
-      image: "",
-    })
-
-    setTimeout(() => {
-      history.push('/home')
-    }, 4000)
-  }
-=======
->>>>>>> frontend
-
     const existeName = allDogs.filter(
       (e) => e.name.toLowerCase() === input.name.toLowerCase()
     );
 
-    if (existeName.length) {
-      return alert("Dog already exists");
+    if (existeName) {
+      return (
+        Swal.fire({
+          title: `Ya Existe El Perro ${input.name}`,
+          icon: 'info',
+          timer: 3000,
+          confirmButtonColor: 'blue',
+        })
+      )
     } else {
       if (!Object.keys(input).length || input.temperament.length === 0) {
         alert("Complete all options");
+        Swal.fire({
+          title: `Complete Todos Los Campos`,
+          icon: 'error',
+          text: 'Todos Son Obligstorios, Menos La Imagen',
+          timer: 4000,
+          confirmButtonColor: 'Red',
+        })
       } else if (Object.keys(errors).length) {
-        alert("incorrect data");
+        Swal.fire({
+          title: `Datos Incorrectos`,
+          icon: 'error',
+          timer: 4000,
+          confirmButtonColor: 'Red',
+        })
       }
       else {
         dispatch(postDog(input))
-        alert('Perro Creado Correctamente')
+        Swal.fire({
+          title: `El Perro ${input.name} Fue Creado Con Exito`,
+          icon: 'success',
+          text: 'Sera Redirigido Al Inicio',
+          timer: 3000,
+          confirmButtonColor: 'green',
+        })
         setInput({
           name: "",
           weightMin: "",
@@ -176,10 +172,13 @@ const CreatedDog = () => {
           life_span: "",
           image: "",
         })
-        history.push('/home')
+        setTimeout(() => {
+          history.push('/home')
+        }, 4000)
       }
     }
   }
+
   const handleDelete = (e) => {
     setInput(
       {
@@ -312,6 +311,7 @@ const CreatedDog = () => {
       </form>
     </div>
   )
+
 };
 
 
