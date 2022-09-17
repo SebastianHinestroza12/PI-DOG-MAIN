@@ -28,12 +28,8 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getDog());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
-
 
   const handleClick = (e) => {
     e.preventDefault();

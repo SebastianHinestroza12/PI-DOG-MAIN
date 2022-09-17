@@ -1,13 +1,73 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { postDog, getTemperaments } from "../../action";
+import { postDog, getTemperaments, getDog } from "../../action";
 import './CreatedDog.css';
+
+
+
+function validations({ name, weightMin, weightMax, heightMin, heightMax, life_span }) {
+  let error = {}
+  if (!name) { error.name = 'Se Requiere Un Nombre' }
+  else if (!/^([a-zñáéíóúA-Z][^\d@+.,-_{}]+[\s]?)+$/.test(name)) {
+    error.name = 'Nombre Invalido'
+  }
+
+  if (!weightMin) { error.weightMin = 'Ingrese Peso Minimo' }
+  else if (!/^[0-9]*$/.test(weightMin)) {
+    error.weightMin = 'Requiere Valor Numerico'
+  } else if (!/^[0-9]{1,3}$/.test(weightMin)) {
+    error.weightMin = 'Debe Tener Menos De 4 Digitos'
+  }
+
+
+  if (!weightMax) { error.weightMax = 'Ingrese Peso Maximo' }
+  else if (!/^[0-9]*$/.test(weightMax)) {
+    error.weightMax = 'Requiere Valor Numerico'
+  }
+  else if (!/^[0-9]{1,3}$/.test(weightMax)) {
+    error.weightMax = 'Debe Tener Menos De 4 Digitos'
+  }
+
+  if (parseInt(weightMin) >= parseInt(weightMax)) {
+    error.weightMax = 'El Peso Maximo Debe Ser Mayor'
+  }
+
+  if (!heightMin) { error.heightMin = 'Ingrese Altura Minima' }
+  else if (!/^[0-9]+$/.test(heightMin)) {
+    error.heightMin = 'Requiere Valor Numerico'
+  }
+  else if (!/^[0-9]{1,3}$/.test(heightMin)) {
+    error.heightMin = 'Debe Tener Menos De 4 Digitos'
+  }
+
+  if (!heightMax) { error.heightMax = 'Ingrese Altura Maxima' }
+  else if (!/^[0-9]*$/.test(heightMax)) {
+    error.heightMax = 'Requiere Valor Numerico'
+  }
+  else if (!/^[0-9]{1,3}$/.test(heightMax)) {
+    error.heightMax = 'Debe Tener Menos De 4 Digitos'
+  }
+
+  if (parseInt(heightMin) >= parseInt(heightMax)) {
+    error.heightMax = 'La Altura Maxima Debe Ser Mayor'
+  }
+
+  if (!/^[0-9]+$/.test(life_span)) {
+    error.life_span_min = 'Requiere Valor Numerico'
+  }
+  else if (!/^[0-9]{1,3}$/.test(life_span)) {
+    error.life_span_min = 'Debe Tener Menos De 4 Digitos'
+  }
+  return error
+};
 
 const CreatedDog = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const allDogs = useSelector((state) => state.dogs);
   const allTemperamento = useSelector(state => state.temperaments);
+  const [errors, setErrors] = useState({});
 
   const [input, setInput] = useState({
     name: "",
@@ -22,8 +82,8 @@ const CreatedDog = () => {
 
   useEffect(() => {
     dispatch(getTemperaments());
+    dispatch(getDog());
   }, [dispatch]);
-
 
   const handleChange = (e) => {
     setInput({
@@ -31,33 +91,67 @@ const CreatedDog = () => {
       [e.target.name]: e.target.value
     });
 
+    setErrors(
+      validations({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+
     console.log(input)
   };
 
   const handleSelct = (e) => {
-    setInput({
-      ...input,
-      temperament: [...input.temperament, e.target.value]
-    })
-  }
+    if (input.temperament === "") setInput({ ...input, temperament: [] });
+    if (Object.values(input.temperament).includes(e.target.value)) {
+      alert("Duplicate temperament");
+    } else {
+      setInput({
+        ...input,
+        temperament: [...input.temperament, e.target.value],
+      });
+    }
+  };
+
+  // const handleSelct = (e) => {
+  //   setInput({
+  //     ...input,
+  //     temperament: [...input.temperament, e.target.value]
+  //   })
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
-    dispatch(postDog(input))
-    alert('Perro Creado Correctamente')
-    setInput({
-      name: "",
-      weightMin: "",
-      weightMax: "",
-      heightMin: "",
-      heightMax: "",
-      temperament: [],
-      life_span: "",
-      image: "",
-    })
-    history.push('/home')
-  }
 
+    const existeName = allDogs.filter(
+      (e) => e.name.toLowerCase() === input.name.toLowerCase()
+    );
+
+    if (existeName.length) {
+      return alert("Dog already exists");
+    } else {
+      if (!Object.keys(input).length || input.temperament.length === 0) {
+        alert("Complete all options");
+      } else if (Object.keys(errors).length) {
+        alert("incorrect data");
+      }
+      else {
+        dispatch(postDog(input))
+        alert('Perro Creado Correctamente')
+        setInput({
+          name: "",
+          weightMin: "",
+          weightMax: "",
+          heightMin: "",
+          heightMax: "",
+          temperament: [],
+          life_span: "",
+          image: "",
+        })
+        history.push('/home')
+      }
+    }
+  }
   const handleDelete = (e) => {
     setInput(
       {
@@ -88,6 +182,8 @@ const CreatedDog = () => {
                 name='name'
                 onChange={e => handleChange(e)}
               />
+              {<span>{errors.name}</span>}
+
             </div>
 
             <div className="display-input">
@@ -97,6 +193,7 @@ const CreatedDog = () => {
                 name='weightMin'
                 onChange={(e) => handleChange(e)}
               />
+              {<span>{errors.weightMin}</span>}
             </div>
 
             <div className="display-input">
@@ -106,6 +203,7 @@ const CreatedDog = () => {
                 name='weightMax'
                 onChange={(e) => handleChange(e)}
               />
+              {<span>{errors.weightMax}</span>}
             </div>
 
             <div className="display-input">
@@ -115,6 +213,7 @@ const CreatedDog = () => {
                 name='heightMin'
                 onChange={(e) => handleChange(e)}
               />
+              {<span>{errors.heightMin}</span>}
             </div>
 
             <div className="display-input">
@@ -124,6 +223,7 @@ const CreatedDog = () => {
                 name='heightMax'
                 onChange={(e) => handleChange(e)}
               />
+              {<span>{errors.heightMax}</span>}
             </div>
 
             <div className="display-input">
@@ -133,8 +233,8 @@ const CreatedDog = () => {
                 name='life_span'
                 onChange={(e) => handleChange(e)}
               />
+              {<span>{errors.life_span}</span>}
             </div>
-
 
             <div className="display-input" >
 
