@@ -45,13 +45,14 @@ const CreatedDog = () => {
   const handleSubmit = (e) => {
     e.preventDefault(e);
     dispatch(postDog(input))
-    Swal.fire({
-      title: `El Perro ${input.name} Fue Creado Con Exito`,
-      icon: 'success',
-      text: 'Sera Redirigido Al Inicio',
-      timer: 3000,
-      confirmButtonColor: 'green',
-    })
+    // Swal.fire({
+    //   title: `El Perro ${input.name} Fue Creado Con Exito`,
+    //   icon: 'success',
+    //   text: 'Sera Redirigido Al Inicio',
+    //   timer: 3000,
+    //   confirmButtonColor: 'green',
+    // })
+    alert('Perro Creado Correctamente')
     setInput({
       name: "",
       weightMin: "",
