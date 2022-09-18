@@ -126,7 +126,7 @@ const CreatedDog = () => {
       (e) => e.name.toLowerCase() === input.name.toLowerCase()
     );
 
-    if (existeName) {
+    if (existeName.length > 0) {
       return (
         Swal.fire({
           title: `Ya Existe El Perro ${input.name}`,
@@ -137,7 +137,6 @@ const CreatedDog = () => {
       )
     } else {
       if (!Object.keys(input).length || input.temperament.length === 0) {
-        alert("Complete all options");
         Swal.fire({
           title: `Complete Todos Los Campos`,
           icon: 'error',
@@ -209,7 +208,7 @@ const CreatedDog = () => {
                 name='name'
                 onChange={e => handleChange(e)}
               />
-              {<span>{errors.name}</span>}
+              {<span className="error">{errors.name}</span>}
 
             </div>
 
@@ -220,7 +219,7 @@ const CreatedDog = () => {
                 name='weightMin'
                 onChange={(e) => handleChange(e)}
               />
-              {<span>{errors.weightMin}</span>}
+              {<span className="error">{errors.weightMin}</span>}
             </div>
 
             <div className="display-input">
@@ -230,7 +229,7 @@ const CreatedDog = () => {
                 name='weightMax'
                 onChange={(e) => handleChange(e)}
               />
-              {<span>{errors.weightMax}</span>}
+              {<span className="error">{errors.weightMax}</span>}
             </div>
 
             <div className="display-input">
@@ -240,7 +239,7 @@ const CreatedDog = () => {
                 name='heightMin'
                 onChange={(e) => handleChange(e)}
               />
-              {<span>{errors.heightMin}</span>}
+              {<span className="error">{errors.heightMin}</span>}
             </div>
 
             <div className="display-input">
@@ -250,7 +249,7 @@ const CreatedDog = () => {
                 name='heightMax'
                 onChange={(e) => handleChange(e)}
               />
-              {<span>{errors.heightMax}</span>}
+              {<span className="error">{errors.heightMax}</span>}
             </div>
 
             <div className="display-input">
@@ -260,7 +259,7 @@ const CreatedDog = () => {
                 name='life_span'
                 onChange={(e) => handleChange(e)}
               />
-              {<span>{errors.life_span}</span>}
+              {<span className="error">{errors.life_span}</span>}
             </div>
 
             <div className="display-input" >

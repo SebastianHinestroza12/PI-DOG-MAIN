@@ -24,7 +24,7 @@ const getApiInfo = async () => {
       image: el.image.url
         ? el.image.url
         : "https://st.depositphotos.com/1806346/1944/i/600/depositphotos_19448879-stock-photo-three-dogs.jpg",
-      temperament: el.temperament
+      temperament: el.temperament ? el.temperament : 'Loyal, Alert, Calm'
     };
   });
   return infoApi;

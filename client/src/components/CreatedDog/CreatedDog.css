@@ -11,7 +11,7 @@
 
 .container-form {
   /* border: 1px solid #000; */
-  height: 45rem;
+  height: 50rem;
   width: 80%;
   background: radial-gradient(
     circle,
@@ -211,4 +211,13 @@
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
   color: white;
   text-transform: uppercase;
+}
+
+.error {
+  margin-top: 7px;
+  text-transform: capitalize;
+  background-color: #e74c3c;
+  border-radius: 12px;
+  border: none;
+  text-decoration: none;
 }
