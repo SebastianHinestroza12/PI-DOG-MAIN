@@ -177,14 +177,12 @@
   background-position: 0;
 }
 
-.container-temp {
-  width: 15%;
-  /* border: 1px solid #000; */
+.conta {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
   justify-content: right;
-  margin: -600px 12px 0px 850px;
+  flex-wrap: wrap;
+  /* border: 1px solid #000; */
+  margin-top: -650px;
 }
 
 .delete-button {

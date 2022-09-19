@@ -291,20 +291,23 @@ const CreatedDog = () => {
           </div>
 
         </div>
-        <div className="container-temp">
-          {input.temperament?.map((e) => (
-            <div key={e}>
-              <button
-                type="button"
-                key={e}
-                value={e}
-                onClick={() => handleDelete(e)}
-                className='delete-button'
-              >
-                {e}
-              </button>
-            </div>
-          ))}
+        <div className="conta">
+
+          <div className="container-temp">
+            {input.temperament?.map((e) => (
+              <div key={e}>
+                <button
+                  type="button"
+                  key={e}
+                  value={e}
+                  onClick={() => handleDelete(e)}
+                  className='delete-button'
+                >
+                  {e}
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
 
       </form>
