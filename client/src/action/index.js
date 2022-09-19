@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 function getDog() {
   return async function (dispatch) {
-    let json = await axios.get('http://localhost:3001/dogs');
+    let json = await axios.get('/dogs');
     return dispatch({
       type: 'GET_DOG',
       payload: json.data
@@ -14,7 +14,7 @@ function getDog() {
 
 function getTemperaments() {
   return async function (dispatch) {
-    let json = await axios.get('http://localhost:3001/temperaments');
+    let json = await axios.get('/temperaments');
     return dispatch({
       type: 'GET_TEMPERAMENTS',
       payload: json.data
@@ -25,7 +25,7 @@ function getTemperaments() {
 function getDogName(name) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+      let json = await axios.get(`/dogs?name=${name}`);
       return dispatch({
         type: 'GET_DOG_NAME',
         payload: json.data
@@ -44,7 +44,7 @@ function getDogName(name) {
 function postDog(payload) {
   return async function (dispatch) {
     try {
-      let json = await axios.post('http://localhost:3001/dogs', payload)
+      let json = await axios.post('/dogs', payload)
       console.log(json);
       return dispatch({
         type: 'POST_DOG',
@@ -60,7 +60,7 @@ function postDog(payload) {
 function getDogId(id) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/dogs/${id}`);
+      let json = await axios.get(`/dogs/${id}`);
       return dispatch({
         type: 'GET_DOG_ID',
         payload: json.data
