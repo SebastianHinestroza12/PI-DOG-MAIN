@@ -21,7 +21,7 @@ const getDogs = async (req, res) => {
 const getDogsId = async (req, res) => {
   const { id } = req.params;
   const filtro = await mergeInfo();
-  const dogsId = filtro.find(data => parseInt(data.id) === parseInt(id));
+  const dogsId = filtro.find(data => data.id == id);
 
   if (dogsId) return res.status(200).json(dogsId);
   else return res.status(404).json(`no existe el perro con id ${id}`);
