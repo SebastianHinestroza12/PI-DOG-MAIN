@@ -6,7 +6,7 @@ import './LandingPage.css';
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="container-body">
       <div className="container-landing">
         <h1>BIENVENIDOS A DOG APP</h1>
         <Link to='home'><button>INGRESAR</button></Link>

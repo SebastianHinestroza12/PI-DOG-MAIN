@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDogName } from '../../action';
 import './SearchBar.css';
@@ -19,7 +18,7 @@ const SearchBar = () => {
   const handleButtonSubmit = (e) => {
     e.preventDefault();
     dispatch(getDogName(name));
-    setName("");
+    setName("")
   }
 
   return (

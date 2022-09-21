@@ -1,13 +1,16 @@
 const { Raza, Temperament } = require('../db');
 const axios = require('axios');
+const { API_KEY } = process.env
 
 /**
  * Toma los datos de la API y devuelve una matriz de objetos con los datos de la API.
  * @returns Una matriz de objetos.
  */
 
+
+
 const getApiInfo = async () => {
-  const apiUrl = await axios.get("https://api.thedogapi.com/v1/breeds");
+  const apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
   const infoApi = await apiUrl.data.map((el) => {
     const heightAPI = el.height.metric.split("-");
     const weightAPI = el.weight.metric.split("-");

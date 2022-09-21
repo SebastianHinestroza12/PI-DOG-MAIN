@@ -48,6 +48,8 @@ const postDogs = async (req, res) => {
     image,
   } = req.body;
 
+  if (!name || !heightMin || !heightMax || !weightMin || !weightMax) return res.status(404).json('Faltan informacon obligatoria');
+
   try {
     let NewRaza = await Raza.create({
       name,
@@ -70,9 +72,39 @@ const postDogs = async (req, res) => {
   }
 };
 
+const deleteDb = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    if (id) {
+      await Raza.destroy({
+        where: { id: id },
+      });
+      return res.status(204).json(`Perro Con Id ${id} Fue Eliminado Correctamente`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const update = async (req, res) => {
+  const { name } = req.query;
+  try {
+    if (name) {
+      await Raza.update({
+        where: { name: name }
+      })
+      return res.status(200).json('El Nombre Fue Modicado');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getDogs,
   getDogsId,
   getTemperamento,
-  postDogs
+  postDogs,
+  deleteDb,
+  update
 }
