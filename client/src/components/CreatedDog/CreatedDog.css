@@ -1,5 +1,5 @@
 .container-dog {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   /* border: 1px solid #000; */
   width: 100%;
   height: 50rem;
@@ -11,7 +11,7 @@
 
 .container-form {
   /* border: 1px solid #000; */
-  height: 50rem;
+  height: 55rem;
   width: 80%;
   background: radial-gradient(
     circle,

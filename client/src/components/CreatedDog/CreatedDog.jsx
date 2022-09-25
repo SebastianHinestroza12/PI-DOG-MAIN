@@ -4,64 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { postDog, getTemperaments, getDog } from "../../action";
 import './CreatedDog.css';
 import Swal from 'sweetalert2';
+import { validations } from './Validate';
 
-
-
-function validations({ name, weightMin, weightMax, heightMin, heightMax, life_span }) {
-  let error = {}
-  if (!name) { error.name = 'Se Requiere Un Nombre' }
-  else if (!/^([a-zñáéíóúA-Z][^\d@+.,-_{}]+[\s]?)+$/.test(name)) {
-    error.name = 'Nombre Invalido'
-  }
-
-  if (!weightMin) { error.weightMin = 'Ingrese Peso Minimo' }
-  else if (!/^[0-9]*$/.test(weightMin)) {
-    error.weightMin = 'Requiere Valor Numerico'
-  } else if (!/^[0-9]{1,3}$/.test(weightMin)) {
-    error.weightMin = 'Debe Tener Menos De 4 Digitos'
-  }
-
-
-  if (!weightMax) { error.weightMax = 'Ingrese Peso Maximo' }
-  else if (!/^[0-9]*$/.test(weightMax)) {
-    error.weightMax = 'Requiere Valor Numerico'
-  }
-  else if (!/^[0-9]{1,3}$/.test(weightMax)) {
-    error.weightMax = 'Debe Tener Menos De 4 Digitos'
-  }
-
-  if (parseInt(weightMin) >= parseInt(weightMax)) {
-    error.weightMax = 'El Peso Maximo Debe Ser Mayor'
-  }
-
-  if (!heightMin) { error.heightMin = 'Ingrese Altura Minima' }
-  else if (!/^[0-9]+$/.test(heightMin)) {
-    error.heightMin = 'Requiere Valor Numerico'
-  }
-  else if (!/^[0-9]{1,3}$/.test(heightMin)) {
-    error.heightMin = 'Debe Tener Menos De 4 Digitos'
-  }
-
-  if (!heightMax) { error.heightMax = 'Ingrese Altura Maxima' }
-  else if (!/^[0-9]*$/.test(heightMax)) {
-    error.heightMax = 'Requiere Valor Numerico'
-  }
-  else if (!/^[0-9]{1,3}$/.test(heightMax)) {
-    error.heightMax = 'Debe Tener Menos De 4 Digitos'
-  }
-
-  if (parseInt(heightMin) >= parseInt(heightMax)) {
-    error.heightMax = 'La Altura Maxima Debe Ser Mayor'
-  }
-
-  if (!/^[0-9]+$/.test(life_span)) {
-    error.life_span_min = 'Requiere Valor Numerico'
-  }
-  else if (!/^[0-9]{1,3}$/.test(life_span)) {
-    error.life_span_min = 'Debe Tener Menos De 4 Digitos'
-  }
-  return error
-};
 
 const CreatedDog = () => {
   const dispatch = useDispatch();
@@ -103,22 +47,31 @@ const CreatedDog = () => {
   };
 
   const handleSelct = (e) => {
-    if (input.temperament === "") setInput({ ...input, temperament: [] });
-    if (Object.values(input.temperament).includes(e.target.value)) {
+    if (input.temperament.length <= 4) {
+      if (input.temperament === "") setInput({ ...input, temperament: [] });
+      if (Object.values(input.temperament).includes(e.target.value)) {
+        Swal.fire({
+          title: `Temperamento Duplicado`,
+          icon: 'warning',
+          timer: 3000,
+          confirmButtonColor: 'orange',
+        })
+      } else {
+        setInput({
+          ...input,
+          temperament: [...input.temperament, e.target.value],
+        });
+      }
+    }
+    else {
       Swal.fire({
-        title: `Temperamento Duplicado`,
-        icon: 'warning',
-        timer: 3000,
+        title: `Maximo 5 Temperamentos`,
+        icon: 'info',
+        timer: 2000,
         confirmButtonColor: 'orange',
       })
-    } else {
-      setInput({
-        ...input,
-        temperament: [...input.temperament, e.target.value],
-      });
     }
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
@@ -173,7 +126,7 @@ const CreatedDog = () => {
         })
         setTimeout(() => {
           history.push('/home')
-        }, 4000)
+        }, 3000)
       }
     }
   }
@@ -207,6 +160,7 @@ const CreatedDog = () => {
                 value={input.name}
                 name='name'
                 onChange={e => handleChange(e)}
+                required
               />
               {<span className="error">{errors.name}</span>}
 
@@ -218,6 +172,7 @@ const CreatedDog = () => {
                 value={input.weightMin}
                 name='weightMin'
                 onChange={(e) => handleChange(e)}
+                required
               />
               {<span className="error">{errors.weightMin}</span>}
             </div>
@@ -228,6 +183,7 @@ const CreatedDog = () => {
                 value={input.weightMax}
                 name='weightMax'
                 onChange={(e) => handleChange(e)}
+                required
               />
               {<span className="error">{errors.weightMax}</span>}
             </div>
@@ -238,6 +194,7 @@ const CreatedDog = () => {
                 value={input.heightMin}
                 name='heightMin'
                 onChange={(e) => handleChange(e)}
+                required
               />
               {<span className="error">{errors.heightMin}</span>}
             </div>
@@ -248,6 +205,7 @@ const CreatedDog = () => {
                 value={input.heightMax}
                 name='heightMax'
                 onChange={(e) => handleChange(e)}
+                required
               />
               {<span className="error">{errors.heightMax}</span>}
             </div>
@@ -258,6 +216,7 @@ const CreatedDog = () => {
                 value={input.life_span}
                 name='life_span'
                 onChange={(e) => handleChange(e)}
+                required
               />
               {<span className="error">{errors.life_span}</span>}
             </div>

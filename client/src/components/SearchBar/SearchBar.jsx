@@ -18,13 +18,14 @@ const SearchBar = () => {
   const handleButtonSubmit = (e) => {
     e.preventDefault();
     dispatch(getDogName(name));
-    setName("")
+    setName("");
   }
 
   return (
     <div className="container-search">
       <input
         className="search-bar"
+        value={name}
         onChange={e => handleInputName(e)}
         type="search"
         placeholder="Buscar Dog..."
