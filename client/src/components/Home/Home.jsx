@@ -22,6 +22,9 @@ const Home = () => {
   const indexOfFirtDog = indexOfLastDog - dogForPage;
   const currentDog = allDog.slice(indexOfFirtDog, indexOfLastDog);
 
+  console.log(setDogForPage);
+  console.log(orden);
+
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
   };
