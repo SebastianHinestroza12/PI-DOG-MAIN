@@ -13,6 +13,7 @@ const CreatedDog = () => {
   const allDogs = useSelector((state) => state.dogs);
   const allTemperamento = useSelector(state => state.temperaments);
   const [errors, setErrors] = useState({});
+  // const [errorButton, setErrorButton] = useState(false);
 
   const [input, setInput] = useState({
     name: "",
@@ -161,6 +162,7 @@ const CreatedDog = () => {
                 name='name'
                 onChange={e => handleChange(e)}
                 required
+
               />
               {<span className="error">{errors.name}</span>}
 
@@ -184,6 +186,7 @@ const CreatedDog = () => {
                 name='weightMax'
                 onChange={(e) => handleChange(e)}
                 required
+
               />
               {<span className="error">{errors.weightMax}</span>}
             </div>
@@ -195,6 +198,7 @@ const CreatedDog = () => {
                 name='heightMin'
                 onChange={(e) => handleChange(e)}
                 required
+
               />
               {<span className="error">{errors.heightMin}</span>}
             </div>
@@ -206,6 +210,7 @@ const CreatedDog = () => {
                 name='heightMax'
                 onChange={(e) => handleChange(e)}
                 required
+
               />
               {<span className="error">{errors.heightMax}</span>}
             </div>
@@ -217,17 +222,20 @@ const CreatedDog = () => {
                 name='life_span'
                 onChange={(e) => handleChange(e)}
                 required
+
               />
               {<span className="error">{errors.life_span}</span>}
             </div>
 
             <div className="display-input" >
 
-              <label>Imagen</label>
-              <input type="search"
+              <label>Imagen(Opcional)</label>
+              <input type="url"
                 value={input.image}
                 name='image'
                 onChange={(e) => handleChange(e)}
+                placeholder="Url De Imagen"
+
               />
             </div>
 
@@ -245,7 +253,9 @@ const CreatedDog = () => {
             </div>
 
             <div className="display-input btn-crear">
-              <button type="submit">Crear Perro</button>
+              <button
+                type="submit">Crear Perro
+              </button>
             </div>
           </div>
 

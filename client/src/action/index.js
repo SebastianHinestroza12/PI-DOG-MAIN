@@ -32,7 +32,7 @@ function getDogName(name) {
       })
     } catch (error) {
       Swal.fire({
-        icon: 'error',
+        icon: 'info',
         title: `No Se Encontro El Perro ${name}`,
         timer: 2000,
         confirmButtonColor: 'blue',

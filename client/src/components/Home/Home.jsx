@@ -6,6 +6,7 @@ import { getDog, getTemperaments, filterDogTemperaments, filterDogCreated, order
 import { Card } from "../Card/Card.jsx";
 import { Page } from "../Page/Page.jsx";
 import { NavBar } from "../NavBar/NavBar.jsx";
+import { Loading } from "../Loading/Loading.jsx";
 import './Home.css';
 
 
@@ -15,6 +16,7 @@ const Home = () => {
   const allDog = useSelector((state) => state.dogs);
   const temp = useSelector((state) => state.temperaments)
 
+  const [carga, setCarga] = useState(true);
   const [orden, setOrden] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [dogForPage, setDogForPage] = useState(8);
@@ -30,7 +32,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    dispatch(getDog());
+    dispatch(getDog()).then(() => setCarga(false));
     dispatch(getTemperaments());
   }, [dispatch]);
 
@@ -123,19 +125,20 @@ const Home = () => {
         <StrictMode>
 
           {
-            currentDog.map(el => {
-              return (
-                <Link className="linktohome" to={'/dogs/' + el.id} key={el.id}>
-                  <Card
-                    name={el.name}
-                    image={el.image}
-                    temperament={el.temperament}
-                    weightMin={el.weightMin}
-                    weightMax={el.weightMax}
-                  />
-                </Link>
-              )
-            })
+            carga ? <Loading />
+              : currentDog.map(el => {
+                return (
+                  <Link className="linktohome" to={'/dogs/' + el.id} key={el.id}>
+                    <Card
+                      name={el.name}
+                      image={el.image}
+                      temperament={el.temperament}
+                      weightMin={el.weightMin}
+                      weightMax={el.weightMax}
+                    />
+                  </Link>
+                )
+              })
           }
 
         </StrictMode>

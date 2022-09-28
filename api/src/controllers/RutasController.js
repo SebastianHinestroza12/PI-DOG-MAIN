@@ -72,7 +72,7 @@ const postDogs = async (req, res) => {
   }
 };
 
-const deleteDb = async (req, res, next) => {
+const deleteDb = async (req, res) => {
   const { id } = req.params;
   try {
     if (id) {
@@ -88,12 +88,19 @@ const deleteDb = async (req, res, next) => {
 
 const update = async (req, res) => {
   const { name } = req.query;
+  const { namedb } = req.body;
+
   try {
     if (name) {
-      await Raza.update({
-        where: { name: name }
+      await Raza.update({ name: name }, {
+        where: {
+          name: namedb
+        }
       })
       return res.status(200).json('El Nombre Fue Modicado');
+    }
+    else {
+      res.status(404).json('El Nombre A Modificar No Existe en La DB')
     }
   } catch (error) {
     console.log(error);
