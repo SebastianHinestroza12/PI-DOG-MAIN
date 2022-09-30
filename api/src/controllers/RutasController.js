@@ -73,10 +73,45 @@ const postDogs = async (req, res) => {
 };
 
 
+const deleteBd = async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (id) {
+      await Raza.destroy({
+        where: {
+          id: id
+        }
+      })
+    }
+    res.status(204).json(`El Pero Con Id ${id} Fue Eliminado Correctamente`)
+  } catch (error) {
+    console.log(error)
+  }
+};
+
+const updateDb = async (req, res) => {
+  const { id } = req.params;
+  const { idDb } = req.body;
+
+  try {
+    if (!id) return res.status(404).json('No Se Proporciono El Id A Eliminar')
+    else {
+      await Raza.update({ id: id }, {
+        were: {
+          id: idDb
+        }
+      })
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 module.exports = {
   getDogs,
   getDogsId,
   getTemperamento,
   postDogs,
+  deleteBd,
+  updateDb
 }
