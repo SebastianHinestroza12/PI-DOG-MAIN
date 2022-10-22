@@ -143,13 +143,11 @@ const CreatedDog = () => {
 
   return (
     <div className="container-dog">
-
       <form className="container-form" onSubmit={e => handleSubmit(e)}>
         <div className="container-input">
           <div className="button-volver">
             <Link className="link-dog" to="/home"><button>Regresar</button></Link>
           </div>
-
           <div className="formulario">
             <div className="titulo">
               <h1>Crea Tu Perro</h1>
@@ -228,14 +226,12 @@ const CreatedDog = () => {
             </div>
 
             <div className="display-input" >
-
               <label>Imagen(Opcional)</label>
               <input type="url"
                 value={input.image}
                 name='image'
                 onChange={(e) => handleChange(e)}
                 placeholder="Url De Imagen"
-
               />
             </div>
 
