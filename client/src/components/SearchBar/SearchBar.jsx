@@ -1,36 +1,52 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getDogName } from '../../action';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDogName, getDog } from '../../action';
 import './SearchBar.css';
-import { FcSearch } from "react-icons/fc";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 const SearchBar = () => {
+  const [busqueda, setBusqueda] = useState("");
+  const [dogs, setDog] = useState([]);
+  console.log(dogs);
+  const allDogs = useSelector((state) => state.dogs);
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
 
-  const handleInputName = (e) => {
-    e.preventDefault();
-    setName(e.target.value);
-    console.log(name);
-  }
+  // useEffect(() => {
+  //   dispatch(getDog())
+  // }, [dispatch])
+
+  console.log(allDogs)
 
   const handleButtonSubmit = (e) => {
     e.preventDefault();
-    dispatch(getDogName(name));
-    setName("");
+    dispatch(getDogName(busqueda));
+    setBusqueda("")
   }
 
+  const filter = (dogBusqueda) => {
+    const data = allDogs.filter(el => el.name.toLowerCase().includes(dogBusqueda.toLowerCase()));
+    setDog(data);
+  }
+
+  const handleChange = (e) => {
+    setBusqueda(e.target.value);
+    filter(e.target.value)
+  };
+
   return (
-    <div className="container-search">
+    <div className="containerInput">
       <input
-        className="search-bar"
-        value={name}
-        onChange={e => handleInputName(e)}
-        type="search"
-        placeholder="Buscar Dog..."
+        className="form-control inputBuscar"
+        value={busqueda}
+        placeholder="Búsqueda dog por nombre"
+        onChange={(e) => handleChange(e)}
       />
-      <button className="boton-search" onClick={e => handleButtonSubmit(e)} type="submit"><FcSearch /></button>
+      <button className="btn btn-dark" onClick={e => handleButtonSubmit(e)}>
+        <FontAwesomeIcon icon={faSearch} />
+      </button>
     </div>
   )
 };

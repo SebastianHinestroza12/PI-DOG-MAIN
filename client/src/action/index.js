@@ -120,5 +120,5 @@ export {
   getDogName,
   postDog,
   getDogId,
-  clearState
+  clearState,
 };
