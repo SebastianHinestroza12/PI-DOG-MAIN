@@ -1,12 +1,11 @@
 import React, { Fragment, StrictMode } from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getDog, getTemperaments, filterDogTemperaments, filterDogCreated, orderByName, orderByWeight } from "../../action";
 import { Card } from "../Card/Card.jsx";
 import { Page } from "../Page/Page.jsx";
 import { NavBar } from "../NavBar/NavBar.jsx";
-import { Loading } from "../Loading/Loading.jsx";
 import './Home.css';
 
 
@@ -17,13 +16,10 @@ const Home = () => {
   const temp = useSelector((state) => state.temperaments)
 
   const appTopRef = useRef();
-  const [carga, setCarga] = useState(true);
   const [orden, setOrden] = useState('');
-  // const [currentPage, setActualPage] = useState(1);
-  // const [dogForPage, setDogForPage] = useState(8);
-  // const indexOfLastDog = currentPage * dogForPage;
-  // const indexOfFirtDog = indexOfLastDog - dogForPage;
-  // const currentDog = allDog.slice(indexOfFirtDog, indexOfLastDog);
+  console.log(orden);
+  console.log(getTemperaments);
+
 
   const [actualPage, setActualPage] = useState(1); //arrancamos desde la page 1
   const [productsPerPage, setproductsPerPage] = useState(9); //cuantos products por page
@@ -35,6 +31,7 @@ const Home = () => {
   ); //recortamos el arreglo con todos los products
   const [minPageNumber, setMinPageNumber] = useState(0);
   const [maxPageNumber, setMaxPageNumber] = useState(5);
+  console.log(setproductsPerPage)
 
 
   // console.log(setDogForPage);
@@ -51,11 +48,6 @@ const Home = () => {
       setMaxPageNumber(maxPageNumber - 4);
     }
   };
-
-  useEffect(() => {
-    dispatch(getDog()).then(() => setCarga(false));
-    dispatch(getTemperaments());
-  }, [dispatch]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -149,20 +141,19 @@ const Home = () => {
         <StrictMode>
 
           {
-            carga ? <Loading />
-              : actualproducts.map(el => {
-                return (
-                  <Link className="linktohome" to={'/dogs/' + el.id} key={el.id}>
-                    <Card
-                      name={el.name}
-                      image={el.image}
-                      temperament={el.temperament}
-                      weightMin={el.weightMin}
-                      weightMax={el.weightMax}
-                    />
-                  </Link>
-                )
-              })
+            actualproducts.map(el => {
+              return (
+                <Link className="linktohome" to={'/dogs/' + el.id} key={el.id}>
+                  <Card
+                    name={el.name}
+                    image={el.image}
+                    temperament={el.temperament}
+                    weightMin={el.weightMin}
+                    weightMax={el.weightMax}
+                  />
+                </Link>
+              )
+            })
           }
 
         </StrictMode>
