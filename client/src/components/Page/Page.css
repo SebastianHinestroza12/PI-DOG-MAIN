@@ -1,35 +1,44 @@
-.paginado {
-  margin-top: 22px;
-  margin-bottom: 12px;
+.pages {
+  display: flex;
+  justify-content: center;
+  margin-block: 1rem 6rem;
 }
 
-.number {
-  margin-left: 10px;
+.pageNumber {
+  display: flex;
   align-items: center;
-  display: inline;
-}
-
-.btn-paginado {
-  background: rgb(14, 17, 17);
-  background: radial-gradient(
-    circle,
-    rgb(166, 190, 190) 0%,
-    rgb(20, 20, 19) 100%
-  );
-  border-radius: 7px;
-  transition-duration: 0.4s;
-  width: 40px;
-  height: 40px;
-  margin-top: 10px;
-  color: white;
-}
-
-.btn-paginado:focus {
-  outline: none;
-}
-
-.btn-paginado:hover {
+  justify-content: center;
+  list-style: none;
+  width: 42px;
+  height: 42px;
+  color: rgb(0, 0, 0);
+  background-color: #f5f5f5;
+  margin: 1px;
+  user-select: none;
   cursor: pointer;
-  background-color: #0b2ab4e0;
+}
+.pageNumber:hover {
+  background-color: rgb(42, 74, 159);
   color: rgb(255, 255, 255);
+}
+
+.disabled {
+  color: rgb(125, 125, 125);
+}
+.disabled:hover {
+  background-color: darkgray;
+  color: black;
+  cursor: not-allowed;
+}
+
+.activePage {
+  background-color: #2075d8;
+  color: rgb(255, 255, 255);
+}
+
+@media (min-width: 500px) {
+  .pageNumber {
+    width: 45px;
+    height: 45px;
+  }
 }

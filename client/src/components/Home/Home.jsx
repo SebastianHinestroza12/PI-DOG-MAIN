@@ -1,5 +1,5 @@
 import React, { Fragment, StrictMode } from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getDog, getTemperaments, filterDogTemperaments, filterDogCreated, orderByName, orderByWeight } from "../../action";
@@ -16,19 +16,40 @@ const Home = () => {
   const allDog = useSelector((state) => state.dogs);
   const temp = useSelector((state) => state.temperaments)
 
+  const appTopRef = useRef();
   const [carga, setCarga] = useState(true);
   const [orden, setOrden] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [dogForPage, setDogForPage] = useState(8);
-  const indexOfLastDog = currentPage * dogForPage;
-  const indexOfFirtDog = indexOfLastDog - dogForPage;
-  const currentDog = allDog.slice(indexOfFirtDog, indexOfLastDog);
+  // const [currentPage, setActualPage] = useState(1);
+  // const [dogForPage, setDogForPage] = useState(8);
+  // const indexOfLastDog = currentPage * dogForPage;
+  // const indexOfFirtDog = indexOfLastDog - dogForPage;
+  // const currentDog = allDog.slice(indexOfFirtDog, indexOfLastDog);
 
-  console.log(setDogForPage);
-  console.log(orden);
+  const [actualPage, setActualPage] = useState(1); //arrancamos desde la page 1
+  const [productsPerPage, setproductsPerPage] = useState(9); //cuantos products por page
+  const indexOfLastproduct = actualPage * productsPerPage;
+  const indexOfFirstproduct = indexOfLastproduct - productsPerPage;
+  const actualproducts = allDog.slice(
+    indexOfFirstproduct,
+    indexOfLastproduct
+  ); //recortamos el arreglo con todos los products
+  const [minPageNumber, setMinPageNumber] = useState(0);
+  const [maxPageNumber, setMaxPageNumber] = useState(5);
 
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber)
+
+  // console.log(setDogForPage);
+  // console.log(orden);
+
+  const pages = (pageNumber) => {
+    setActualPage(pageNumber);
+    appTopRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (pageNumber >= maxPageNumber) {
+      setMinPageNumber(minPageNumber + 4);
+      setMaxPageNumber(maxPageNumber + 4);
+    } else if (pageNumber <= minPageNumber + 1 && pageNumber !== 1) {
+      setMinPageNumber(minPageNumber - 4);
+      setMaxPageNumber(maxPageNumber - 4);
+    }
   };
 
   useEffect(() => {
@@ -39,31 +60,31 @@ const Home = () => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getDog());
-    setCurrentPage(1);
+    setActualPage(1);
   };
 
   const handleFilterDog = (e) => {
     e.preventDefault(e);
     dispatch(filterDogTemperaments(e.target.value));
-    setCurrentPage(1);
+    setActualPage(1);
   };
 
   const handleFilterCreated = (e) => {
     e.preventDefault(e);
     dispatch(filterDogCreated(e.target.value));
-    setCurrentPage(1);
+    setActualPage(1);
   };
 
   const handleOrderByName = (e) => {
     e.preventDefault(e);
     dispatch(orderByName(e.target.value));
-    setCurrentPage(1);
+    setActualPage(1);
     setOrden(`Ordenado ${e.target.value}`);
   };
   const handleOrderByPeso = (e) => {
     e.preventDefault(e);
     dispatch(orderByWeight(e.target.value));
-    setCurrentPage(1);
+    setActualPage(1);
     setOrden(`Ordenado ${e.target.value}`);
   };
 
@@ -117,16 +138,19 @@ const Home = () => {
         </div>
 
         <Page
-          dogForPage={dogForPage}
-          allDog={allDog.length}
-          paginado={paginado}
+          actualPage={actualPage}
+          minPageNumber={minPageNumber}
+          maxPageNumber={maxPageNumber}
+          productsPerPage={productsPerPage}
+          products={Array.isArray(allDog) ? allDog.length : 1}
+          pages={pages}
         />
 
         <StrictMode>
 
           {
             carga ? <Loading />
-              : currentDog.map(el => {
+              : actualproducts.map(el => {
                 return (
                   <Link className="linktohome" to={'/dogs/' + el.id} key={el.id}>
                     <Card

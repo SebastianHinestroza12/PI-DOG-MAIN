@@ -1,26 +1,29 @@
 import React from 'react';
 import './Page.css';
 
-const Page = ({ dogForPage, allDog, paginado }) => {
-  const pageNumber = [];
-
-  for (let i = 1; i <= Math.ceil(allDog / dogForPage); i++) {
-    pageNumber.push(i);
+const Page = ({ actualPage, minPageNumber, maxPageNumber, products, productsPerPage, pages }) => {
+  const pageNumbers = [];
+  const indexPageNumbers = Math.ceil(products / productsPerPage);
+  for (let i = 1; i <= indexPageNumbers; i++) {
+    pageNumbers.push(i);
   }
 
+  const handlePrev = () => (actualPage - 1) && pages(actualPage - 1)
+  const handleNext = () => (actualPage !== pageNumbers.length) && pages(actualPage + 1)
+
   return (
-    <nav className='paginado'>
-      <ul>
-        {
-          pageNumber && pageNumber.map(num => (
-            <li className='number' key={num}>
-              <button className="btn-paginado" onClick={() => paginado(num)}>{num}</button>
-            </li>
-          ))
-        }
+    <nav>
+      <ul className="pages">
+        <li className={actualPage === 1 ? 'pageNumber disabled' : "pageNumber"} onClick={handlePrev}>Prev</li>
+        {pageNumbers && pageNumbers.slice(minPageNumber, maxPageNumber).map((num) => (
+          <li className={actualPage === num ? 'pageNumber activePage' : "pageNumber"} key={num} onClick={() => pages(num)}>
+            {num}
+          </li>
+        ))}
+        <li className={actualPage === pageNumbers.length ? 'pageNumber disabled' : "pageNumber"} onClick={handleNext}>Next</li>
       </ul>
     </nav>
-  )
+  );
 };
 
 
