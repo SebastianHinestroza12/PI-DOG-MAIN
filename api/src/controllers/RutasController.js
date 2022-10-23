@@ -11,7 +11,7 @@ const getDogs = async (req, res) => {
   const todo = await mergeInfo();
 
   if (name) {
-    const filter = todo.filter(data => data.name.toLowerCase() === name.toLowerCase());
+    const filter = todo.filter(data => data.name.toLowerCase().includes(name.toLowerCase()));
     if (filter.length > 0) return res.status(200).json(filter);
     else return res.status(404).json(`El perro ${name} no existe ❌`);
   }
