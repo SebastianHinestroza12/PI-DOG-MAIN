@@ -4,7 +4,6 @@ import { getDogName, getDog } from '../../action';
 import './SearchBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import 'bootstrap/dist/css/bootstrap.css';
 
 
 const SearchBar = () => {
@@ -14,9 +13,9 @@ const SearchBar = () => {
   const allDogs = useSelector((state) => state.dogs);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getDog())
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(getDog())
+  }, [dispatch])
 
   console.log(allDogs)
 
