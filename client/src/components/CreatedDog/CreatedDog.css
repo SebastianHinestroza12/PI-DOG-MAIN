@@ -175,3 +175,24 @@
   border: none;
   text-decoration: none;
 }
+
+@media screen and (max-width: 768px) {
+  .button-volver {
+    margin-left: 87px;
+  }
+  .formulario {
+    border: 3px solid #000;
+    width: 350px;
+    border-radius: 12px;
+    margin-top: 15px;
+    box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
+  }
+  .container-form {
+    /* border: 1px solid #000; */
+    height: 63rem;
+    width: 80%;
+  }
+  .btn-crear button {
+    padding: 15px;
+  }
+}
