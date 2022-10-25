@@ -23,7 +23,7 @@ label.form-check-label:hover {
 }
 
 .container-filtro {
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   display: flex;
   padding: 6px;
   justify-content: center;
@@ -33,9 +33,9 @@ label.form-check-label:hover {
   margin-top: 12px;
   width: 90%;
   margin: 0 auto;
-  border-radius: 10px;
+  border-radius: 6px;
   border: none;
-  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
+  box-shadow: 2px 2px 3px 1px white;
 }
 
 .container-item {
@@ -53,14 +53,14 @@ label.form-check-label:hover {
   -moz-appearance: none;
   appearance: none;
   background-color: transparent;
-  border: 2px solid #e74c3c;
+  background-color: white;
   border-radius: 0.6em;
-  color: #e74c3c;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -74,29 +74,18 @@ label.form-check-label:hover {
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-}
-.btn-home:hover,
-.btn-home:focus {
-  color: rgb(0, 0, 0);
-  outline: 0;
-}
-
-.btn-home {
   border-color: #070707;
   color: rgb(2, 2, 2);
-  background-image: -webkit-linear-gradient(
-    45deg,
-    #f3f2ef 50%,
-    transparent 50%
-  );
-  background-image: linear-gradient(45deg, orange 50%, transparent 50%);
-  background-position: 100%;
-  background-size: 400%;
-  -webkit-transition: background 600ms ease-in-out;
   transition: background 600ms ease-in-out;
 }
+
 .btn-home:hover {
   background-position: 0;
+  background-color: #000000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23220000' points='1600 160 0 460 0 350 1600 50'/%3E%3Cpolygon fill='%23440000' points='1600 260 0 560 0 450 1600 150'/%3E%3Cpolygon fill='%23660000' points='1600 360 0 660 0 550 1600 250'/%3E%3Cpolygon fill='%23880000' points='1600 460 0 760 0 650 1600 350'/%3E%3Cpolygon fill='%23A00' points='1600 800 0 800 0 750 1600 450'/%3E%3C/g%3E%3C/svg%3E");
+  /* background-attachment: fixed; */
+  background-size: cover;
+  color: white !important;
 }
 
 .select-home select::-ms-expand {
@@ -120,12 +109,7 @@ label.form-check-label:hover {
   outline: 0;
   border: 0;
   border-radius: 0;
-  background: rgb(14, 17, 17);
-  background: radial-gradient(
-    circle,
-    rgb(166, 190, 190) 0%,
-    rgb(20, 20, 19) 100%
-  );
+  color: #000 !important;
   color: white;
   font-size: 1em;
   font-family: "Quicksand", sans-serif;
@@ -147,7 +131,7 @@ label.form-check-label:hover {
   height: 13px;
   display: block;
   border-left: 4px solid #080808;
-  border-bottom: 4px solid #2ac176;
+  border-bottom: 4px solid #d13d22;
   transform: rotate(-45deg); /* Giramos el cuadrado */
   transition: all 0.25s ease;
   margin-top: 15px;
@@ -155,6 +139,7 @@ label.form-check-label:hover {
 
 .p-home {
   border: 1px solid #000;
+  background-color: white;
   padding: 5px;
   border-radius: 10px;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
