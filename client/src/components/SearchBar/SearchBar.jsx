@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDogName, getDog } from '../../action';
 import './SearchBar.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const SearchBar = () => {
@@ -34,7 +33,7 @@ const SearchBar = () => {
         onChange={(e) => handleChange(e)}
       />
       <button className="btn btn-dark" onClick={e => handleButtonSubmit(e)}>
-        <FontAwesomeIcon icon={faSearch} />
+        🔍
       </button>
     </div>
   )
