@@ -178,21 +178,21 @@
 
 @media screen and (max-width: 768px) {
   .button-volver {
-    margin-left: 87px;
+    margin-left: 58px;
   }
   .formulario {
     border: 3px solid #000;
-    width: 350px;
+    width: 300px;
     border-radius: 12px;
     margin-top: 15px;
     box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.979);
   }
   .container-form {
     /* border: 1px solid #000; */
-    height: 63rem;
+    height: 65rem;
     width: 80%;
   }
   .btn-crear button {
-    padding: 15px;
+    padding: 10px;
   }
 }

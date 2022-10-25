@@ -14,10 +14,17 @@
 }
 
 @media screen and (max-width: 768px) {
+  .containerInput {
+    display: flex;
+    margin: 7px;
+  }
   .inputBuscar {
-    padding: 10px;
+    padding: 12px;
     border: none;
-    width: 100px;
+    width: 60px;
     border: 1px solid black;
+  }
+  .btn-dark {
+    padding: 12px;
   }
 }
